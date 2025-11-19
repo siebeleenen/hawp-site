@@ -44,11 +44,6 @@ const goToPhoto = (index) => {
 onMounted(() => {
   // Generate array of photo paths (1.jpg through 100.jpg)
   photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.jpg`)
-  
-  // Auto-advance slideshow every 5 seconds
-  setInterval(() => {
-    nextPhoto()
-  }, 5000)
 
   // Add scroll listener for dynamic navigation
   window.addEventListener('scroll', updateActiveSection)
@@ -64,40 +59,32 @@ onUnmounted(() => {
   <div class="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400">
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
-      <div class="container mx-auto px-6">
+      <div class="px-6">
         <div class="flex items-center justify-start gap-6 h-20 md:h-32">
           <!-- Logo -->
-          <div class="flex items-center space-x-3 md:space-x-4">
-            <div class="bg-white text-blue-600 p-2 md:p-4 rounded-lg md:rounded-xl font-bebas text-2xl md:text-5xl font-bold">
-              HAWP
-            </div>
-            <span class="text-white font-bebas text-xl md:text-5xl hidden sm:block">Herkse Afterwork Party</span>
-          </div>
+          <a href="#home" @click.prevent="scrollToSection('home')" class="flex items-center hover:scale-105 transition-transform duration-300">
+            <img src="/afterwork logo.png" alt="HAWP Logo" class="h-12 w-12 md:h-20 md:w-20" />
+          </a>
           
           <!-- Nav Links -->
           <div class="flex space-x-1 md:space-x-3">
-            <button @click="scrollToSection('home')" 
-                    :class="activeSection === 'home' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
-                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
-              Home
-            </button>
             <button @click="scrollToSection('informatie')" 
                     :class="activeSection === 'informatie' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
-                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Informatie
             </button>
             <button @click="scrollToSection('sponsors')" 
                     :class="activeSection === 'sponsors' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
-                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Sponsors
             </button>
             <button @click="scrollToSection('gallery')" 
                     :class="activeSection === 'gallery' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
-                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Foto's
             </button>
             <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer"
-               class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-bold text-sm md:text-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse">
+               class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse">
               Koop Tickets
             </a>
           </div>
@@ -106,7 +93,7 @@ onUnmounted(() => {
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen relative overflow-hidden pt-20 md:pt-32">
+    <section id="home" class="h-screen relative overflow-hidden pt-24 md:pt-36">
       <!-- Background decorative elements -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
@@ -114,75 +101,11 @@ onUnmounted(() => {
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div class="relative z-10 container mx-auto px-6 py-20 flex flex-col justify-center items-center min-h-screen">
-        <!-- Logo Badge -->
-        <div class="absolute top-32 right-8 bg-black text-white px-6 py-4 rounded-2xl transform rotate-3 shadow-2xl hover:rotate-6 transition-transform duration-300">
-          <div class="font-bebas text-2xl leading-tight">
-            Herkse<br>
-            Afterwork<br>
-            Party 🍸
-          </div>
-        </div>
-
-        <!-- Main Title -->
-        <div class="text-center mb-16 max-w-6xl">
-          <h1 class="font-bebas text-7xl md:text-9xl lg:text-[11rem] text-white leading-none mb-12 tracking-tight drop-shadow-2xl">
-            HERKSE<br>
-            AFTERWORK<br>
-            PARTY
-          </h1>
-          <p class="text-2xl md:text-3xl text-white/90 font-light mb-8 max-w-3xl mx-auto">
-            Na verschillende uitverkochte edities van de Herkse Afterwork Party zijn we in 2026 toe aan onze <span class="font-bold text-yellow-300">dertiende editie!</span>
-          </p>
-          <p class="text-xl md:text-2xl text-white font-semibold">
-            Dans samen met ons het weekend tegemoet! 🎉
-          </p>
-        </div>
-
-        <!-- Date and Cocktail Section -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-16 mb-20">
-          <!-- Date -->
-          <div class="text-center md:text-right bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:scale-105 transition-transform duration-300">
-            <div class="font-bebas text-5xl md:text-6xl text-white mb-2">
-              13 MAART 2026
-            </div>
-            <div class="text-xl text-white/90">
-              17:00 - 01:00
-            </div>
-          </div>
-
-          <!-- Cocktail Illustration -->
-          <div class="relative hover:scale-110 transition-transform duration-300">
-            <svg width="220" height="270" viewBox="0 0 200 250" class="drop-shadow-2xl">
-              <path d="M 60 80 L 140 80 L 120 160 L 80 160 Z" fill="rgba(59, 130, 246, 0.6)" stroke="rgba(255, 255, 255, 0.8)" stroke-width="3"/>
-              <rect x="75" y="95" width="20" height="20" fill="rgba(147, 197, 253, 0.8)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(15 85 105)"/>
-              <rect x="85" y="115" width="25" height="25" fill="rgba(147, 197, 253, 0.7)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(-10 97 127)"/>
-              <rect x="95" y="95" width="22" height="22" fill="rgba(147, 197, 253, 0.8)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(25 106 106)"/>
-              <circle cx="75" cy="90" r="18" fill="rgba(163, 230, 53, 0.9)" stroke="rgba(255, 255, 255, 0.8)" stroke-width="2"/>
-              <path d="M 75 72 L 75 108 M 57 90 L 93 90 M 63 78 L 87 102 M 63 102 L 87 78" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5"/>
-              <rect x="95" y="160" width="10" height="60" fill="rgba(255, 255, 255, 0.7)" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"/>
-              <ellipse cx="100" cy="220" rx="35" ry="8" fill="rgba(255, 255, 255, 0.7)" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"/>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Quick Info Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
-            <div class="text-4xl mb-3">🍽️</div>
-            <h3 class="font-bebas text-2xl text-white mb-2">All-Around Dinner</h3>
-            <p class="text-white/90">18:00 - 21:00</p>
-          </div>
-          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
-            <div class="text-4xl mb-3">🎵</div>
-            <h3 class="font-bebas text-2xl text-white mb-2">Party Night</h3>
-            <p class="text-white/90">21:00 - 01:00</p>
-          </div>
-          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
-            <div class="text-4xl mb-3">🎉</div>
-            <h3 class="font-bebas text-2xl text-white mb-2">Networking & Fun</h3>
-            <p class="text-white/90">Gezellige sfeer</p>
-          </div>
+      <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center items-center h-full">
+        <div class="relative">
+          <img src="/hawpomslag 2026.png" alt="HAWP 2026" class="w-full max-w-4xl rounded-3xl shadow-2xl relative z-10" />
+          <!-- Gradient glow behind image -->
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-pink-500/30 to-orange-500/30 rounded-3xl blur-3xl transform scale-105 -z-10"></div>
         </div>
       </div>
     </section>
@@ -191,7 +114,7 @@ onUnmounted(() => {
     <section id="informatie" class="min-h-screen relative py-24 bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-6xl md:text-7xl text-blue-600 mb-6">INFORMATIE</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-blue-600 mb-6">INFORMATIE</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto"></div>
         </div>
 
@@ -265,10 +188,9 @@ onUnmounted(() => {
                   Industrieweg 1062<br>
                   3540 Herk-de-Stad
                 </p>
-                <p class="text-gray-600">
-                  <strong>Bereikbaarheid:</strong><br>
-                  Goed bereikbaar met openbaar vervoer en auto. Parkeren mogelijk in de buurt.
-                </p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Industrieweg+1062,+3540+Herk-de-Stad" target="_blank" rel="noopener noreferrer" class="inline-block text-blue-600 font-semibold hover:text-blue-800 transition-colors mt-2">
+                  📍 Open in Google Maps
+                </a>
               </div>
             </div>
 
@@ -290,7 +212,7 @@ onUnmounted(() => {
     <section id="sponsors" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-6xl md:text-7xl text-white mb-6">SPONSORS</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">SPONSORS</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
           <p class="text-white/80 text-xl max-w-3xl mx-auto">
             Mede mogelijk gemaakt door onze geweldige partners
@@ -325,7 +247,7 @@ onUnmounted(() => {
     <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-6xl md:text-7xl text-blue-600 mb-6">FOTO'S HAWP 2025</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-blue-600 mb-6">FOTO'S HAWP 2025</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mb-8"></div>
           <p class="text-gray-700 text-xl max-w-3xl mx-auto">
             Beleef de sfeer van onze vorige editie opnieuw! 📸
@@ -370,12 +292,12 @@ onUnmounted(() => {
             <div class="bg-gray-100 p-4">
               <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
                 <button
-                  v-for="(photo, index) in photos.slice(Math.max(0, currentPhotoIndex - 5), currentPhotoIndex + 6)"
-                  :key="index + Math.max(0, currentPhotoIndex - 5)"
-                  @click="goToPhoto(index + Math.max(0, currentPhotoIndex - 5))"
+                  v-for="(photo, index) in photos"
+                  :key="index"
+                  @click="goToPhoto(index)"
                   :class="[
                     'flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all duration-300',
-                    currentPhotoIndex === index + Math.max(0, currentPhotoIndex - 5) 
+                    currentPhotoIndex === index
                       ? 'ring-4 ring-blue-500 scale-110' 
                       : 'opacity-60 hover:opacity-100'
                   ]">
@@ -383,6 +305,7 @@ onUnmounted(() => {
                     :src="photo" 
                     :alt="`Thumbnail ${index + 1}`"
                     class="w-full h-full object-cover"
+                    loading="eager"
                   />
                 </button>
               </div>
@@ -410,7 +333,7 @@ onUnmounted(() => {
     <section id="tickets" class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-6xl md:text-7xl text-white mb-6">TICKETS</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">TICKETS</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
         </div>
 
