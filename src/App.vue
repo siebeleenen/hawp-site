@@ -3,6 +3,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const activeSection = ref('home')
 const photos = ref([])
+const sponsors = ref([])
 const currentPhotoIndex = ref(0)
 
 const scrollToSection = (section) => {
@@ -45,6 +46,18 @@ onMounted(() => {
   // Generate array of photo paths (1.jpg through 100.jpg)
   photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.jpg`)
 
+  // Load sponsor logos dynamically
+  sponsors.value = [
+    { name: 'Alelek', logo: '/hawp_sponsors/alelek.jpeg' },
+    { name: 'Autobanden Mathijs', logo: '/hawp_sponsors/autobanden_mathijs.jpg' },
+    { name: 'Bierpunt', logo: '/hawp_sponsors/bierpunt.png' },
+    { name: 'Hannick', logo: '/hawp_sponsors/Hannick.jpg' },
+    { name: 'Vos Technics', logo: '/hawp_sponsors/Kopie van vos technics.png' },
+    { name: 'Brasserie \'t Krievelkuut', logo: '/hawp_sponsors/logo-Brasserie-t-Krievelkuut.png' },
+    { name: 'Chanry', logo: '/hawp_sponsors/logo_chanry.png' },
+    { name: 'Gulden Mortier', logo: '/hawp_sponsors/gulden_mortier_logo-DPdFlTs0.png' },
+  ]
+
   // Add scroll listener for dynamic navigation
   window.addEventListener('scroll', updateActiveSection)
   updateActiveSection() // Initialize on mount
@@ -69,17 +82,17 @@ onUnmounted(() => {
           <!-- Nav Links -->
           <div class="flex space-x-1 md:space-x-3">
             <button @click="scrollToSection('informatie')" 
-                    :class="activeSection === 'informatie' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
+                    :class="activeSection === 'informatie' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Informatie
             </button>
             <button @click="scrollToSection('sponsors')" 
-                    :class="activeSection === 'sponsors' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
+                    :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Sponsors
             </button>
             <button @click="scrollToSection('gallery')" 
-                    :class="activeSection === 'gallery' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
+                    :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Foto's
             </button>
@@ -111,53 +124,53 @@ onUnmounted(() => {
     </section>
 
     <!-- Informatie Section -->
-    <section id="informatie" class="min-h-screen relative py-24 bg-slate-50">
+    <section id="informatie" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-4xl md:text-5xl text-slate-800 mb-6">INFORMATIE</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">INFORMATIE</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
           <!-- Info Cards -->
           <div class="space-y-6">
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
-              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/20 hover:shadow-2xl hover:border-amber-500/40 transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-amber-400 mb-4 flex items-center">
                 <span class="text-4xl mr-3">🎉</span> WAT IS DE HAWP?
               </h3>
-              <p class="text-gray-700 text-lg leading-relaxed">
+              <p class="text-gray-300 text-lg leading-relaxed">
                 Een <strong>Afterworkparty</strong> vol gezelligheid en goede vibes! 
-                Ontspan, netwerk en geniet van geweldige muziek en een onvergetelijke sfeer!
+                Ontspan en geniet van geweldige muziek en een onvergetelijke sfeer!
               </p>
             </div>
 
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
-              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/20 hover:shadow-2xl hover:border-amber-500/40 transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-amber-400 mb-4 flex items-center">
                 <span class="text-4xl mr-3">🆕</span> NIEUW CONCEPT 2026
               </h3>
-              <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                <strong>All-around-dinner</strong> van <span class="font-bold text-blue-600">18:00u tot 21:00u</span>
+              <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                <strong>All-around-dinner</strong> van <span class="font-bold text-amber-400">18:00u tot 21:00u</span>
               </p>
-              <p class="text-gray-600 italic">
+              <p class="text-gray-400 italic">
                 💡 Er zullen een beperkt aantal tickets beschikbaar zijn die enkel toegang geven tot de HAWP na 21:00u (exclusief eten).
               </p>
             </div>
 
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
-              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/20 hover:shadow-2xl hover:border-amber-500/40 transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-amber-400 mb-4 flex items-center">
                 <span class="text-4xl mr-3">📅</span> WANNEER?
               </h3>
-              <p class="text-gray-700 text-lg leading-relaxed">
-                <strong class="text-2xl text-blue-600">Donderdag 13 maart 2026</strong><br>
+              <p class="text-gray-300 text-lg leading-relaxed">
+                <strong class="text-2xl text-amber-400">Donderdag 13 maart 2026</strong><br>
                 Van <strong>17:00u tot 01:00u</strong>
               </p>
             </div>
 
-            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 shadow-xl border-2 border-yellow-200 hover:shadow-2xl transition-all duration-300">
-              <h3 class="font-bebas text-3xl text-orange-600 mb-4 flex items-center">
+            <div class="bg-gradient-to-br from-amber-900/30 to-orange-900/30 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/30 hover:shadow-2xl hover:border-amber-500/50 transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-amber-300 mb-4 flex items-center">
                 <span class="text-4xl mr-3">⚡</span> EXCLUSIEF!
               </h3>
-              <p class="text-gray-700 text-lg leading-relaxed">
+              <p class="text-gray-300 text-lg leading-relaxed">
                 Uitverkocht tijdens alle vorige edities! Wees er snel bij en mis deze dertiende editie niet!
               </p>
             </div>
@@ -165,11 +178,11 @@ onUnmounted(() => {
 
           <!-- Map Integration -->
           <div class="space-y-6">
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100">
-              <h3 class="font-bebas text-3xl text-blue-600 mb-6 flex items-center">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/20">
+              <h3 class="font-bebas text-3xl text-amber-400 mb-6 flex items-center">
                 <span class="text-4xl mr-3">📍</span> LOCATIE
               </h3>
-              <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4">
+              <div class="bg-slate-900/80 rounded-2xl overflow-hidden shadow-lg mb-4">
                 <!-- Google Maps Embed -->
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.847!2d5.1638!3d50.9425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c124e7f0f0f0f0%3A0x0!2sIndustrieweg%201062%2C%203540%20Herk-de-Stad!5e0!3m2!1snl!2sbe!4v1700000000000"
@@ -183,24 +196,24 @@ onUnmounted(() => {
                 ></iframe>
               </div>
               <div class="space-y-3">
-                <p class="text-gray-700 text-lg">
-                  <strong>Adres:</strong><br>
+                <p class="text-gray-300 text-lg">
+                  <strong class="text-amber-400">Adres:</strong><br>
                   Industrieweg 1062<br>
                   3540 Herk-de-Stad
                 </p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Industrieweg+1062,+3540+Herk-de-Stad" target="_blank" rel="noopener noreferrer" class="inline-block text-blue-600 font-semibold hover:text-blue-800 transition-colors mt-2">
-                  📍 Open in Google Maps
+                <a href="https://www.google.com/maps/search/?api=1&query=Industrieweg+1062,+3540+Herk-de-Stad" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 font-bold px-6 py-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  Open in Google Maps
                 </a>
               </div>
             </div>
 
-            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 shadow-xl border-2 border-purple-200">
-              <h3 class="font-bebas text-3xl text-purple-600 mb-4 flex items-center">
+            <div class="bg-slate-800/50 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-amber-500/20">
+              <h3 class="font-bebas text-3xl text-amber-400 mb-4 flex items-center">
                 <span class="text-4xl mr-3">💬</span> CONTACT
               </h3>
-              <p class="text-gray-700 text-lg leading-relaxed">
+              <p class="text-gray-300 text-lg leading-relaxed">
                 Vragen? Neem contact op via:<br>
-                <a href="mailto:info@mwfw.be" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">info@mwfw.be</a>
+                <a href="mailto:info@mwfw.be" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">info@mwfw.be</a>
               </p>
             </div>
           </div>
@@ -220,43 +233,28 @@ onUnmounted(() => {
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          <!-- Placeholder sponsor cards -->
-          <div v-for="i in 8" :key="i" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center justify-center aspect-square border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-xl">
-            <div class="text-center">
-              <div class="text-5xl mb-3">🏢</div>
-              <p class="text-white/70 font-semibold">Sponsor {{ i }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-16">
-          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
-            <h3 class="font-bebas text-3xl text-white mb-4">Word Sponsor!</h3>
-            <p class="text-white/90 mb-6">
-              Interesse om partner te worden van de HAWP 2026? 
-            </p>
-            <a href="mailto:info@mwfw.be" class="inline-block bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 font-bold px-8 py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              Neem Contact Op
-            </a>
+          <!-- Sponsor logos -->
+          <div v-for="sponsor in sponsors" :key="sponsor.name" class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex items-center justify-center aspect-square border border-amber-500/20 hover:bg-white/20 hover:border-amber-500/40 hover:scale-105 transition-all duration-300 shadow-xl">
+            <img :src="sponsor.logo" :alt="sponsor.name" class="w-full h-full object-contain" />
           </div>
         </div>
       </div>
     </section>
 
     <!-- Gallery Section (Slideshow) -->
-    <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-white via-slate-50 to-white">
+    <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-900 via-black to-slate-900">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-4xl md:text-5xl text-slate-800 mb-6">FOTO'S HAWP 2025</h2>
+          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">FOTO'S HAWP 2025</h2>
           <div class="w-32 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto mb-8"></div>
-          <p class="text-gray-700 text-xl max-w-3xl mx-auto">
+          <p class="text-gray-400 text-xl max-w-3xl mx-auto">
             Beleef de sfeer van onze vorige editie opnieuw! 📸
           </p>
         </div>
 
         <div class="max-w-5xl mx-auto">
           <!-- Slideshow -->
-          <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-blue-100 mb-12">
+          <div class="relative bg-slate-900/50 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden border border-amber-500/20 mb-12">
             <!-- Main Image -->
             <div class="relative aspect-[16/10] bg-gray-900">
               <img 
@@ -289,7 +287,7 @@ onUnmounted(() => {
             </div>
 
             <!-- Thumbnail Navigation -->
-            <div class="bg-gray-100 p-4">
+            <div class="bg-slate-800/80 backdrop-blur-sm p-4">
               <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
                 <button
                   v-for="(photo, index) in photos"
@@ -298,7 +296,7 @@ onUnmounted(() => {
                   :class="[
                     'flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all duration-300',
                     currentPhotoIndex === index
-                      ? 'ring-4 ring-blue-500 scale-110' 
+                      ? 'ring-4 ring-amber-500 scale-110' 
                       : 'opacity-60 hover:opacity-100'
                   ]">
                   <img 
@@ -318,11 +316,11 @@ onUnmounted(() => {
               href="https://www.facebook.com/media/set/?set=a.975245517921839&type=3" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xl px-10 py-5 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-900 font-bold text-xl px-10 py-5 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
-              <span>Bekijk Alle 266 Foto's Op Facebook</span>
+              <span>Bekijk Alle Foto's Op Facebook</span>
             </a>
           </div>
         </div>
@@ -336,14 +334,13 @@ onUnmounted(() => {
           <div>
             <h4 class="font-bebas text-2xl mb-4">HAWP 2026</h4>
             <p class="text-gray-400">
-              De beste afterwork party voor de werkende medemens!
+              De beste afterwork party!
             </p>
           </div>
           <div>
             <h4 class="font-bebas text-2xl mb-4">CONTACT</h4>
             <p class="text-gray-400">
               Email: info@mwfw.be<br>
-              Sponsors: info@mwfw.be
             </p>
           </div>
           <div>
