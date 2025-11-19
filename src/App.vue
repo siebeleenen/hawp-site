@@ -56,9 +56,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400">
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-amber-500/20">
       <div class="px-6">
         <div class="flex items-center justify-start gap-6 h-20 md:h-32">
           <!-- Logo -->
@@ -69,22 +69,22 @@ onUnmounted(() => {
           <!-- Nav Links -->
           <div class="flex space-x-1 md:space-x-3">
             <button @click="scrollToSection('informatie')" 
-                    :class="activeSection === 'informatie' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    :class="activeSection === 'informatie' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Informatie
             </button>
             <button @click="scrollToSection('sponsors')" 
-                    :class="activeSection === 'sponsors' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    :class="activeSection === 'sponsors' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Sponsors
             </button>
             <button @click="scrollToSection('gallery')" 
-                    :class="activeSection === 'gallery' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    :class="activeSection === 'gallery' ? 'bg-amber-500 text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Foto's
             </button>
             <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer"
-               class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse">
+               class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               Koop Tickets
             </a>
           </div>
@@ -105,17 +105,17 @@ onUnmounted(() => {
         <div class="relative">
           <img src="/hawpomslag 2026.png" alt="HAWP 2026" class="w-full max-w-4xl rounded-3xl shadow-2xl relative z-10" />
           <!-- Gradient glow behind image -->
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-pink-500/30 to-orange-500/30 rounded-3xl blur-3xl transform scale-105 -z-10"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-orange-400/20 to-amber-600/20 rounded-3xl blur-3xl transform scale-105 -z-10"></div>
         </div>
       </div>
     </section>
 
     <!-- Informatie Section -->
-    <section id="informatie" class="min-h-screen relative py-24 bg-white">
+    <section id="informatie" class="min-h-screen relative py-24 bg-slate-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-4xl md:text-5xl text-blue-600 mb-6">INFORMATIE</h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto"></div>
+          <h2 class="font-bebas text-4xl md:text-5xl text-slate-800 mb-6">INFORMATIE</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
@@ -209,11 +209,11 @@ onUnmounted(() => {
     </section>
 
     <!-- Sponsors Section -->
-    <section id="sponsors" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <section id="sponsors" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">SPONSORS</h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
+          <div class="w-32 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-8"></div>
           <p class="text-white/80 text-xl max-w-3xl mx-auto">
             Mede mogelijk gemaakt door onze geweldige partners
           </p>
@@ -235,7 +235,7 @@ onUnmounted(() => {
             <p class="text-white/90 mb-6">
               Interesse om partner te worden van de HAWP 2026? 
             </p>
-            <a href="mailto:info@mwfw.be" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-8 py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <a href="mailto:info@mwfw.be" class="inline-block bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 font-bold px-8 py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
               Neem Contact Op
             </a>
           </div>
@@ -244,11 +244,11 @@ onUnmounted(() => {
     </section>
 
     <!-- Gallery Section (Slideshow) -->
-    <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+    <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-white via-slate-50 to-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-bebas text-4xl md:text-5xl text-blue-600 mb-6">FOTO'S HAWP 2025</h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mb-8"></div>
+          <h2 class="font-bebas text-4xl md:text-5xl text-slate-800 mb-6">FOTO'S HAWP 2025</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto mb-8"></div>
           <p class="text-gray-700 text-xl max-w-3xl mx-auto">
             Beleef de sfeer van onze vorige editie opnieuw! 📸
           </p>
@@ -324,33 +324,6 @@ onUnmounted(() => {
               </svg>
               <span>Bekijk Alle 266 Foto's Op Facebook</span>
             </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tickets Section -->
-    <section id="tickets" class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="font-bebas text-4xl md:text-5xl text-white mb-6">TICKETS</h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
-        </div>
-
-        <div class="max-w-4xl mx-auto">
-          <div class="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl text-center">
-            <div class="text-6xl mb-6">🎟️</div>
-            <h3 class="font-bebas text-4xl text-white mb-6">Tickets Verkrijgbaar Via EventSquare</h3>
-            <p class="text-white/90 text-xl mb-8 leading-relaxed">
-              Tickets voor de Herkse Afterwork Party 2026 worden verkocht via EventSquare.
-              De verkoop start binnenkort!
-            </p>
-            <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-xl px-12 py-5 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              Ga Naar EventSquare
-            </a>
-            <p class="text-white/70 text-sm mt-8">
-              💡 Tip: Tickets zijn altijd snel uitverkocht, dus wees er snel bij!
-            </p>
           </div>
         </div>
       </div>
