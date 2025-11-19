@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const activeSection = ref('home')
 const photos = ref([])
@@ -10,6 +10,22 @@ const scrollToSection = (section) => {
   const element = document.getElementById(section)
   if (element) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+const updateActiveSection = () => {
+  const sections = ['home', 'informatie', 'sponsors', 'gallery', 'tickets']
+  const scrollPosition = window.scrollY + 200 // Offset for header
+
+  for (const section of sections) {
+    const element = document.getElementById(section)
+    if (element) {
+      const { offsetTop, offsetHeight } = element
+      if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+        activeSection.value = section
+        break
+      }
+    }
   }
 }
 
@@ -33,6 +49,14 @@ onMounted(() => {
   setInterval(() => {
     nextPhoto()
   }, 5000)
+
+  // Add scroll listener for dynamic navigation
+  window.addEventListener('scroll', updateActiveSection)
+  updateActiveSection() // Initialize on mount
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateActiveSection)
 })
 </script>
 
@@ -62,15 +86,15 @@ onMounted(() => {
                     class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
               Informatie
             </button>
-            <button @click="scrollToSection('gallery')" 
-                    :class="activeSection === 'gallery' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
-                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
-              Foto's
-            </button>
             <button @click="scrollToSection('sponsors')" 
                     :class="activeSection === 'sponsors' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
                     class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
               Sponsors
+            </button>
+            <button @click="scrollToSection('gallery')" 
+                    :class="activeSection === 'gallery' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+              Foto's
             </button>
             <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer"
                class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-bold text-sm md:text-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse">
@@ -155,9 +179,9 @@ onMounted(() => {
             <p class="text-white/90">21:00 - 01:00</p>
           </div>
           <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
-            <div class="text-4xl mb-3">💼</div>
-            <h3 class="font-bebas text-2xl text-white mb-2">Voor Werkenden</h3>
-            <p class="text-white/90">Speciaal concept</p>
+            <div class="text-4xl mb-3">🎉</div>
+            <h3 class="font-bebas text-2xl text-white mb-2">Networking & Fun</h3>
+            <p class="text-white/90">Gezellige sfeer</p>
           </div>
         </div>
       </div>
@@ -179,8 +203,8 @@ onMounted(() => {
                 <span class="text-4xl mr-3">🎉</span> WAT IS DE HAWP?
               </h3>
               <p class="text-gray-700 text-lg leading-relaxed">
-                Een <strong>Afterworkparty</strong> speciaal voor de werkende medemens. 
-                Na een drukke werkweek kun je hier ontspannen, netwerken en genieten van geweldige muziek en sfeer!
+                Een <strong>Afterworkparty</strong> vol gezelligheid en goede vibes! 
+                Ontspan, netwerk en geniet van geweldige muziek en een onvergetelijke sfeer!
               </p>
             </div>
 
