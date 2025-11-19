@@ -1,0 +1,470 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const activeSection = ref('home')
+const photos = ref([])
+const currentPhotoIndex = ref(0)
+
+const scrollToSection = (section) => {
+  activeSection.value = section
+  const element = document.getElementById(section)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+const nextPhoto = () => {
+  currentPhotoIndex.value = (currentPhotoIndex.value + 1) % photos.value.length
+}
+
+const prevPhoto = () => {
+  currentPhotoIndex.value = (currentPhotoIndex.value - 1 + photos.value.length) % photos.value.length
+}
+
+const goToPhoto = (index) => {
+  currentPhotoIndex.value = index
+}
+
+onMounted(() => {
+  // Generate array of photo paths (1.jpg through 100.jpg)
+  photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.jpg`)
+  
+  // Auto-advance slideshow every 5 seconds
+  setInterval(() => {
+    nextPhoto()
+  }, 5000)
+})
+</script>
+
+<template>
+  <div class="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-lg border-b border-white/10">
+      <div class="container mx-auto px-6">
+        <div class="flex items-center justify-start gap-6 h-20 md:h-32">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3 md:space-x-4">
+            <div class="bg-white text-blue-600 p-2 md:p-4 rounded-lg md:rounded-xl font-bebas text-2xl md:text-5xl font-bold">
+              HAWP
+            </div>
+            <span class="text-white font-bebas text-xl md:text-5xl hidden sm:block">Herkse Afterwork Party</span>
+          </div>
+          
+          <!-- Nav Links -->
+          <div class="flex space-x-1 md:space-x-3">
+            <button @click="scrollToSection('home')" 
+                    :class="activeSection === 'home' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+              Home
+            </button>
+            <button @click="scrollToSection('informatie')" 
+                    :class="activeSection === 'informatie' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+              Informatie
+            </button>
+            <button @click="scrollToSection('gallery')" 
+                    :class="activeSection === 'gallery' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+              Foto's
+            </button>
+            <button @click="scrollToSection('sponsors')" 
+                    :class="activeSection === 'sponsors' ? 'bg-white text-blue-600' : 'text-white hover:bg-white/20'"
+                    class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-semibold text-sm md:text-xl transition-all duration-300">
+              Sponsors
+            </button>
+            <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer"
+               class="px-3 md:px-8 py-2 md:py-4 rounded-lg font-bold text-sm md:text-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-pulse">
+              Koop Tickets
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative overflow-hidden pt-20 md:pt-32">
+      <!-- Background decorative elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-cyan-300/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 container mx-auto px-6 py-20 flex flex-col justify-center items-center min-h-screen">
+        <!-- Logo Badge -->
+        <div class="absolute top-32 right-8 bg-black text-white px-6 py-4 rounded-2xl transform rotate-3 shadow-2xl hover:rotate-6 transition-transform duration-300">
+          <div class="font-bebas text-2xl leading-tight">
+            Herkse<br>
+            Afterwork<br>
+            Party 🍸
+          </div>
+        </div>
+
+        <!-- Main Title -->
+        <div class="text-center mb-16 max-w-6xl">
+          <h1 class="font-bebas text-7xl md:text-9xl lg:text-[11rem] text-white leading-none mb-12 tracking-tight drop-shadow-2xl">
+            HERKSE<br>
+            AFTERWORK<br>
+            PARTY
+          </h1>
+          <p class="text-2xl md:text-3xl text-white/90 font-light mb-8 max-w-3xl mx-auto">
+            Na verschillende uitverkochte edities van de Herkse Afterwork Party zijn we in 2026 toe aan onze <span class="font-bold text-yellow-300">dertiende editie!</span>
+          </p>
+          <p class="text-xl md:text-2xl text-white font-semibold">
+            Dans samen met ons het weekend tegemoet! 🎉
+          </p>
+        </div>
+
+        <!-- Date and Cocktail Section -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-16 mb-20">
+          <!-- Date -->
+          <div class="text-center md:text-right bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl hover:scale-105 transition-transform duration-300">
+            <div class="font-bebas text-5xl md:text-6xl text-white mb-2">
+              13 MAART 2026
+            </div>
+            <div class="text-xl text-white/90">
+              17:00 - 01:00
+            </div>
+          </div>
+
+          <!-- Cocktail Illustration -->
+          <div class="relative hover:scale-110 transition-transform duration-300">
+            <svg width="220" height="270" viewBox="0 0 200 250" class="drop-shadow-2xl">
+              <path d="M 60 80 L 140 80 L 120 160 L 80 160 Z" fill="rgba(59, 130, 246, 0.6)" stroke="rgba(255, 255, 255, 0.8)" stroke-width="3"/>
+              <rect x="75" y="95" width="20" height="20" fill="rgba(147, 197, 253, 0.8)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(15 85 105)"/>
+              <rect x="85" y="115" width="25" height="25" fill="rgba(147, 197, 253, 0.7)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(-10 97 127)"/>
+              <rect x="95" y="95" width="22" height="22" fill="rgba(147, 197, 253, 0.8)" stroke="rgba(255, 255, 255, 0.6)" stroke-width="2" transform="rotate(25 106 106)"/>
+              <circle cx="75" cy="90" r="18" fill="rgba(163, 230, 53, 0.9)" stroke="rgba(255, 255, 255, 0.8)" stroke-width="2"/>
+              <path d="M 75 72 L 75 108 M 57 90 L 93 90 M 63 78 L 87 102 M 63 102 L 87 78" stroke="rgba(255, 255, 255, 0.6)" stroke-width="1.5"/>
+              <rect x="95" y="160" width="10" height="60" fill="rgba(255, 255, 255, 0.7)" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"/>
+              <ellipse cx="100" cy="220" rx="35" ry="8" fill="rgba(255, 255, 255, 0.7)" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Quick Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="text-4xl mb-3">🍽️</div>
+            <h3 class="font-bebas text-2xl text-white mb-2">All-Around Dinner</h3>
+            <p class="text-white/90">18:00 - 21:00</p>
+          </div>
+          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="text-4xl mb-3">🎵</div>
+            <h3 class="font-bebas text-2xl text-white mb-2">Party Night</h3>
+            <p class="text-white/90">21:00 - 01:00</p>
+          </div>
+          <div class="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="text-4xl mb-3">💼</div>
+            <h3 class="font-bebas text-2xl text-white mb-2">Voor Werkenden</h3>
+            <p class="text-white/90">Speciaal concept</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Informatie Section -->
+    <section id="informatie" class="min-h-screen relative py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="font-bebas text-6xl md:text-7xl text-blue-600 mb-6">INFORMATIE</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+          <!-- Info Cards -->
+          <div class="space-y-6">
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+                <span class="text-4xl mr-3">🎉</span> WAT IS DE HAWP?
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                Een <strong>Afterworkparty</strong> speciaal voor de werkende medemens. 
+                Na een drukke werkweek kun je hier ontspannen, netwerken en genieten van geweldige muziek en sfeer!
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+                <span class="text-4xl mr-3">🆕</span> NIEUW CONCEPT 2026
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                <strong>All-around-dinner</strong> van <span class="font-bold text-blue-600">18:00u tot 21:00u</span>
+              </p>
+              <p class="text-gray-600 italic">
+                💡 Er zullen een beperkt aantal tickets beschikbaar zijn die enkel toegang geven tot de HAWP na 21:00u (exclusief eten).
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100 hover:shadow-2xl transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-blue-600 mb-4 flex items-center">
+                <span class="text-4xl mr-3">📅</span> WANNEER?
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                <strong class="text-2xl text-blue-600">Donderdag 13 maart 2026</strong><br>
+                Van <strong>17:00u tot 01:00u</strong>
+              </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl p-8 shadow-xl border-2 border-yellow-200 hover:shadow-2xl transition-all duration-300">
+              <h3 class="font-bebas text-3xl text-orange-600 mb-4 flex items-center">
+                <span class="text-4xl mr-3">⚡</span> EXCLUSIEF!
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                Uitverkocht tijdens alle vorige edities! Wees er snel bij en mis deze dertiende editie niet!
+              </p>
+            </div>
+          </div>
+
+          <!-- Map Integration -->
+          <div class="space-y-6">
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-8 shadow-xl border-2 border-blue-100">
+              <h3 class="font-bebas text-3xl text-blue-600 mb-6 flex items-center">
+                <span class="text-4xl mr-3">📍</span> LOCATIE
+              </h3>
+              <div class="bg-white rounded-2xl overflow-hidden shadow-lg mb-4">
+                <!-- Google Maps Embed -->
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.847!2d5.1638!3d50.9425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c124e7f0f0f0f0%3A0x0!2sIndustrieweg%201062%2C%203540%20Herk-de-Stad!5e0!3m2!1snl!2sbe!4v1700000000000"
+                  width="100%" 
+                  height="400" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="w-full"
+                ></iframe>
+              </div>
+              <div class="space-y-3">
+                <p class="text-gray-700 text-lg">
+                  <strong>Adres:</strong><br>
+                  Industrieweg 1062<br>
+                  3540 Herk-de-Stad
+                </p>
+                <p class="text-gray-600">
+                  <strong>Bereikbaarheid:</strong><br>
+                  Goed bereikbaar met openbaar vervoer en auto. Parkeren mogelijk in de buurt.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 shadow-xl border-2 border-purple-200">
+              <h3 class="font-bebas text-3xl text-purple-600 mb-4 flex items-center">
+                <span class="text-4xl mr-3">💬</span> CONTACT
+              </h3>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                Vragen? Neem contact op via:<br>
+                <a href="mailto:info@mwfw.be" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">info@mwfw.be</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="font-bebas text-6xl md:text-7xl text-white mb-6">SPONSORS</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
+          <p class="text-white/80 text-xl max-w-3xl mx-auto">
+            Mede mogelijk gemaakt door onze geweldige partners
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <!-- Placeholder sponsor cards -->
+          <div v-for="i in 8" :key="i" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center justify-center aspect-square border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 shadow-xl">
+            <div class="text-center">
+              <div class="text-5xl mb-3">🏢</div>
+              <p class="text-white/70 font-semibold">Sponsor {{ i }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-16">
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
+            <h3 class="font-bebas text-3xl text-white mb-4">Word Sponsor!</h3>
+            <p class="text-white/90 mb-6">
+              Interesse om partner te worden van de HAWP 2026? 
+            </p>
+            <a href="mailto:info@mwfw.be" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-8 py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              Neem Contact Op
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section (Slideshow) -->
+    <section id="gallery" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="font-bebas text-6xl md:text-7xl text-blue-600 mb-6">FOTO'S HAWP 2025</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto mb-8"></div>
+          <p class="text-gray-700 text-xl max-w-3xl mx-auto">
+            Beleef de sfeer van onze vorige editie opnieuw! 📸
+          </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+          <!-- Slideshow -->
+          <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-blue-100 mb-12">
+            <!-- Main Image -->
+            <div class="relative aspect-[16/10] bg-gray-900">
+              <img 
+                v-if="photos.length > 0"
+                :src="photos[currentPhotoIndex]" 
+                :alt="`HAWP 2025 foto ${currentPhotoIndex + 1}`"
+                class="w-full h-full object-contain"
+              />
+              
+              <!-- Navigation Arrows -->
+              <button 
+                @click="prevPhoto"
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <button 
+                @click="nextPhoto"
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+
+              <!-- Photo Counter -->
+              <div class="absolute bottom-4 right-4 bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-sm">
+                <span class="font-semibold">{{ currentPhotoIndex + 1 }} / {{ photos.length }}</span>
+              </div>
+            </div>
+
+            <!-- Thumbnail Navigation -->
+            <div class="bg-gray-100 p-4">
+              <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+                <button
+                  v-for="(photo, index) in photos.slice(Math.max(0, currentPhotoIndex - 5), currentPhotoIndex + 6)"
+                  :key="index + Math.max(0, currentPhotoIndex - 5)"
+                  @click="goToPhoto(index + Math.max(0, currentPhotoIndex - 5))"
+                  :class="[
+                    'flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all duration-300',
+                    currentPhotoIndex === index + Math.max(0, currentPhotoIndex - 5) 
+                      ? 'ring-4 ring-blue-500 scale-110' 
+                      : 'opacity-60 hover:opacity-100'
+                  ]">
+                  <img 
+                    :src="photo" 
+                    :alt="`Thumbnail ${index + 1}`"
+                    class="w-full h-full object-cover"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="text-center">
+            <a 
+              href="https://www.facebook.com/media/set/?set=a.975245517921839&type=3" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xl px-10 py-5 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              <span>Bekijk Alle 266 Foto's Op Facebook</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section id="tickets" class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="font-bebas text-6xl md:text-7xl text-white mb-6">TICKETS</h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-md rounded-3xl p-12 border border-white/20 shadow-2xl text-center">
+            <div class="text-6xl mb-6">🎟️</div>
+            <h3 class="font-bebas text-4xl text-white mb-6">Tickets Verkrijgbaar Via EventSquare</h3>
+            <p class="text-white/90 text-xl mb-8 leading-relaxed">
+              Tickets voor de Herkse Afterwork Party 2026 worden verkocht via EventSquare.
+              De verkoop start binnenkort!
+            </p>
+            <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-xl px-12 py-5 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              Ga Naar EventSquare
+            </a>
+            <p class="text-white/70 text-sm mt-8">
+              💡 Tip: Tickets zijn altijd snel uitverkocht, dus wees er snel bij!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h4 class="font-bebas text-2xl mb-4">HAWP 2026</h4>
+            <p class="text-gray-400">
+              De beste afterwork party voor de werkende medemens!
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bebas text-2xl mb-4">CONTACT</h4>
+            <p class="text-gray-400">
+              Email: info@mwfw.be<br>
+              Sponsors: info@mwfw.be
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bebas text-2xl mb-4">VOLG ONS</h4>
+            <div class="flex space-x-4">
+              <a href="https://www.facebook.com/HerkseAfterworkParty/?locale=nl_NL" target="_blank" rel="noopener noreferrer" class="group" title="Facebook">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center hover:scale-110 hover:shadow-xl transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+              </a>
+              <a href="https://www.instagram.com/herkse_afterwork_party/" target="_blank" rel="noopener noreferrer" class="group" title="Instagram">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-xl flex items-center justify-center hover:scale-110 hover:shadow-xl transition-all duration-300 group-hover:from-purple-500 group-hover:via-pink-500 group-hover:to-orange-400">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <p>© 2026 Herkse Afterwork Party - Alle rechten voorbehouden</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<style scoped>
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+</style>
