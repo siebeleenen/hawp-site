@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://herkseafterworkparty.be/sitemap.xml
