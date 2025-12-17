@@ -96,7 +96,7 @@ onUnmounted(() => {
                     class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
               Foto's
             </button>
-            <a href="https://www.eventsquare.io" target="_blank" rel="noopener noreferrer"
+            <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
                class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               Koop Tickets
             </a>
