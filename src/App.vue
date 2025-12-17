@@ -124,27 +124,49 @@ onUnmounted(() => {
         </div>
 
         <!-- Mobile Menu -->
-        <div v-show="mobileMenuOpen" class="md:hidden absolute top-16 left-0 right-0 bg-slate-900/98 backdrop-blur-lg border-b border-amber-500/20 shadow-2xl">
-          <div class="flex flex-col space-y-2 p-4">
+        <div v-show="mobileMenuOpen" class="md:hidden absolute top-16 left-0 right-0 bg-slate-900 backdrop-blur-xl border-b border-amber-500/30 shadow-2xl z-50">
+          <div class="flex flex-col p-4 space-y-2">
+            <!-- Navigation Links -->
             <button @click="scrollToSection('informatie')" 
-                    :class="activeSection === 'informatie' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+                    :class="activeSection === 'informatie' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
+                    class="px-4 py-3 rounded-lg font-bold text-base transition-all duration-200 text-left">
               Informatie
             </button>
             <button @click="scrollToSection('sponsors')" 
-                    :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+                    :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
+                    class="px-4 py-3 rounded-lg font-bold text-base transition-all duration-200 text-left">
               Sponsors
             </button>
             <button @click="scrollToSection('gallery')" 
-                    :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+                    :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
+                    class="px-4 py-3 rounded-lg font-bold text-base transition-all duration-200 text-left">
               Foto's
             </button>
+            
+            <!-- Tickets Button -->
             <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-               class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl transition-all duration-300 text-center">
-              Koop Tickets
+               class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-xl transition-all duration-200 text-center flex items-center justify-center gap-2">
+              🎟️ Koop Tickets
             </a>
+            
+            <!-- Social Media -->
+            <div class="pt-2 mt-1 border-t border-slate-700">
+              <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-2 px-1">Volg Ons</h4>
+              <div class="flex gap-3 items-center">
+                <a href="https://www.facebook.com/HerkseAfterworkParty/?locale=nl_NL" target="_blank" rel="noopener noreferrer" 
+                   class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl w-14 h-14 flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-lg">
+                  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://www.instagram.com/herkse_afterwork_party/" target="_blank" rel="noopener noreferrer"
+                   class="bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-xl w-14 h-14 flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-lg">
+                  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -162,19 +184,36 @@ onUnmounted(() => {
       <div class="relative z-10 container mx-auto px-4 md:px-6 flex flex-col justify-center items-center min-h-screen py-8">
         <!-- Event Info Card -->
         <div class="w-full max-w-5xl mb-8 md:mb-12">
-          <div class="bg-slate-800/50 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-6 border border-amber-500/30 shadow-2xl">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div class="text-center md:text-left">
-                <h1 class="font-bebas text-3xl md:text-5xl text-white mb-2">Herkse Afterwork Party 2026</h1>
-                <p class="text-amber-400 text-lg md:text-2xl font-bold">13de Editie - Altijd Uitverkocht!</p>
+          <div class="bg-slate-800/50 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 md:p-6 border border-amber-500/30 shadow-2xl">
+            <!-- Mobiel: Alles onder elkaar -->
+            <div class="md:hidden space-y-4">
+              <div class="text-center">
+                <h1 class="font-bebas text-4xl text-white mb-2 leading-tight">Herkse Afterwork Party 2026</h1>
+                <p class="text-amber-400 text-xl font-bold">13de Editie - Altijd Uitverkocht!</p>
               </div>
-              <div class="flex flex-col items-center md:items-end gap-2">
-                <div class="text-center md:text-right">
-                  <div class="text-white text-xl md:text-3xl font-bold">13 Maart 2026</div>
-                  <div class="text-gray-300 text-sm md:text-base">17:00 - 01:00</div>
+              <div class="text-center py-2">
+                <div class="text-white text-2xl font-bold">13 Maart 2026</div>
+                <div class="text-gray-300 text-base">17:00 - 01:00</div>
+              </div>
+              <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
+                 class="block w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+                🎟️ Koop Tickets Nu
+              </a>
+            </div>
+            
+            <!-- Desktop: Originele layout -->
+            <div class="hidden md:flex items-center justify-between gap-4">
+              <div class="text-left">
+                <h1 class="font-bebas text-5xl text-white mb-2">Herkse Afterwork Party 2026</h1>
+                <p class="text-amber-400 text-2xl font-bold">13de Editie - Altijd Uitverkocht!</p>
+              </div>
+              <div class="flex flex-col items-end gap-2">
+                <div class="text-right">
+                  <div class="text-white text-3xl font-bold">13 Maart 2026</div>
+                  <div class="text-gray-300 text-base">17:00 - 01:00</div>
                 </div>
                 <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-                   class="px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap">
+                   class="px-8 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap">
                   🎟️ Koop Tickets Nu
                 </a>
               </div>
