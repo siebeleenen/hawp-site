@@ -5,18 +5,28 @@ const activeSection = ref('home')
 const photos = ref([])
 const sponsors = ref([])
 const currentPhotoIndex = ref(0)
+const mobileMenuOpen = ref(false)
+const showScrollTop = ref(false)
 
 const scrollToSection = (section) => {
   activeSection.value = section
+  mobileMenuOpen.value = false
   const element = document.getElementById(section)
   if (element) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }
 
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 const updateActiveSection = () => {
   const sections = ['home', 'informatie', 'sponsors', 'gallery', 'tickets']
   const scrollPosition = window.scrollY + 200 // Offset for header
+
+  // Show scroll to top button after scrolling down
+  showScrollTop.value = window.scrollY > 500
 
   for (const section of sections) {
     const element = document.getElementById(section)
@@ -71,33 +81,68 @@ onUnmounted(() => {
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-amber-500/20">
-      <div class="px-6">
-        <div class="flex items-center justify-start gap-6 h-20 md:h-32">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-lg border-b border-amber-500/20">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="flex items-center justify-between h-16 md:h-20">
           <!-- Logo -->
-          <a href="#home" @click.prevent="scrollToSection('home')" class="flex items-center hover:scale-105 transition-transform duration-300">
-            <img src="/afterwork logo.png" alt="HAWP Logo" class="h-12 w-12 md:h-20 md:w-20" />
+          <a href="#home" @click.prevent="scrollToSection('home')" class="flex items-center hover:scale-105 transition-transform duration-300 z-50">
+            <img src="/afterwork logo.png" alt="HAWP Logo" class="h-10 w-10 md:h-16 md:w-16" />
           </a>
           
-          <!-- Nav Links -->
-          <div class="flex space-x-1 md:space-x-3">
+          <!-- Desktop Nav Links -->
+          <div class="hidden md:flex space-x-2 lg:space-x-4">
             <button @click="scrollToSection('informatie')" 
                     :class="activeSection === 'informatie' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
+                    class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Informatie
             </button>
             <button @click="scrollToSection('sponsors')" 
                     :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
+                    class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Sponsors
             </button>
             <button @click="scrollToSection('gallery')" 
                     :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
-                    class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-all duration-300">
+                    class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Foto's
             </button>
             <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-               class="px-3 md:px-6 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+               class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-bold text-sm lg:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              Koop Tickets
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors z-50">
+            <svg v-if="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div v-show="mobileMenuOpen" class="md:hidden absolute top-16 left-0 right-0 bg-slate-900/98 backdrop-blur-lg border-b border-amber-500/20 shadow-2xl">
+          <div class="flex flex-col space-y-2 p-4">
+            <button @click="scrollToSection('informatie')" 
+                    :class="activeSection === 'informatie' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
+                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+              Informatie
+            </button>
+            <button @click="scrollToSection('sponsors')" 
+                    :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
+                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+              Sponsors
+            </button>
+            <button @click="scrollToSection('gallery')" 
+                    :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
+                    class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-300 text-left">
+              Foto's
+            </button>
+            <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
+               class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl transition-all duration-300 text-center">
               Koop Tickets
             </a>
           </div>
@@ -106,19 +151,65 @@ onUnmounted(() => {
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="h-screen relative overflow-hidden pt-24 md:pt-36">
+    <section id="home" class="min-h-screen relative overflow-hidden pt-16 md:pt-20">
       <!-- Background decorative elements -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-20 left-10 w-96 h-96 bg-cyan-300/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-20 right-10 w-64 h-64 md:w-96 md:h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-64 h-64 md:w-96 md:h-96 bg-orange-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] bg-amber-600/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div class="relative z-10 container mx-auto px-6 flex flex-col justify-center items-center h-full">
-        <div class="relative">
-          <img src="/hawpomslag 2026.png" alt="HAWP 2026" class="w-full max-w-4xl rounded-3xl shadow-2xl relative z-10" />
+      <div class="relative z-10 container mx-auto px-4 md:px-6 flex flex-col justify-center items-center min-h-screen py-8">
+        <!-- Event Info Card -->
+        <div class="w-full max-w-5xl mb-8 md:mb-12">
+          <div class="bg-slate-800/50 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-6 border border-amber-500/30 shadow-2xl">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div class="text-center md:text-left">
+                <h1 class="font-bebas text-3xl md:text-5xl text-white mb-2">Herkse Afterwork Party 2026</h1>
+                <p class="text-amber-400 text-lg md:text-2xl font-bold">13de Editie - Altijd Uitverkocht!</p>
+              </div>
+              <div class="flex flex-col items-center md:items-end gap-2">
+                <div class="text-center md:text-right">
+                  <div class="text-white text-xl md:text-3xl font-bold">13 Maart 2026</div>
+                  <div class="text-gray-300 text-sm md:text-base">17:00 - 01:00</div>
+                </div>
+                <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
+                   class="px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold text-sm md:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap">
+                  🎟️ Koop Tickets Nu
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Image -->
+        <div class="relative w-full max-w-5xl">
+          <img src="/hawpomslag 2026.png" alt="HAWP 2026" class="w-full rounded-2xl md:rounded-3xl shadow-2xl relative z-10" />
           <!-- Gradient glow behind image -->
-          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-orange-400/20 to-amber-600/20 rounded-3xl blur-3xl transform scale-105 -z-10"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-orange-400/20 to-amber-600/20 rounded-2xl md:rounded-3xl blur-3xl transform scale-105 -z-10"></div>
+        </div>
+
+        <!-- Quick Info Pills -->
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 md:mt-12 w-full max-w-5xl">
+          <div class="bg-slate-800/50 backdrop-blur-md rounded-full px-4 md:px-6 py-2 md:py-3 border border-amber-500/20 flex items-center gap-2">
+            <span class="text-2xl">🍽️</span>
+            <span class="text-white text-sm md:text-base font-semibold">All-Around Dinner</span>
+          </div>
+          <div class="bg-slate-800/50 backdrop-blur-md rounded-full px-4 md:px-6 py-2 md:py-3 border border-amber-500/20 flex items-center gap-2">
+            <span class="text-2xl">🎵</span>
+            <span class="text-white text-sm md:text-base font-semibold">Live DJ's</span>
+          </div>
+          <div class="bg-slate-800/50 backdrop-blur-md rounded-full px-4 md:px-6 py-2 md:py-3 border border-amber-500/20 flex items-center gap-2">
+            <span class="text-2xl">⚡</span>
+            <span class="text-white text-sm md:text-base font-semibold">Premium Experience</span>
+          </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+          <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+          </svg>
         </div>
       </div>
     </section>
@@ -368,6 +459,20 @@ onUnmounted(() => {
         </div>
       </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <Transition name="scroll-top">
+      <button
+        v-show="showScrollTop"
+        @click="scrollToTop"
+        class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 p-3 md:p-4 rounded-full shadow-2xl hover:shadow-amber-500/50 hover:scale-110 transition-all duration-300 border-2 border-amber-500/50"
+        aria-label="Scroll naar boven"
+      >
+        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+      </button>
+    </Transition>
   </div>
 </template>
 
@@ -383,5 +488,17 @@ onUnmounted(() => {
 
 .animate-pulse {
   animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scroll to top button transitions */
+.scroll-top-enter-active,
+.scroll-top-leave-active {
+  transition: all 0.3s ease;
+}
+
+.scroll-top-enter-from,
+.scroll-top-leave-to {
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
 }
 </style>
