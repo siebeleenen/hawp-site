@@ -331,7 +331,7 @@ onUnmounted(() => {
                 <span class="text-4xl mr-3">📅</span> WANNEER?
               </h3>
               <p class="text-gray-300 text-lg leading-relaxed">
-                <strong class="text-2xl text-amber-400">Donderdag 13 maart 2026</strong><br>
+                <strong class="text-2xl text-amber-400">Vrijdag 13 maart 2026</strong><br>
                 Van <strong>17:00u tot 01:00u</strong>
               </p>
             </div>
