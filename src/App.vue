@@ -56,17 +56,16 @@ onMounted(() => {
   // Generate array of photo paths (1.jpg through 100.jpg)
   photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.jpg`)
 
-  // Load sponsor logos dynamically
-  sponsors.value = [
-    { name: 'Alelek', logo: '/hawp_sponsors/alelek.jpeg' },
-    { name: 'Autobanden Mathijs', logo: '/hawp_sponsors/autobanden_mathijs.jpg' },
-    { name: 'Bierpunt', logo: '/hawp_sponsors/bierpunt.png' },
-    { name: 'Hannick', logo: '/hawp_sponsors/Hannick.jpg' },
-    { name: 'Vos Technics', logo: '/hawp_sponsors/Kopie van vos technics.png' },
-    { name: 'Brasserie \'t Krievelkuut', logo: '/hawp_sponsors/logo-Brasserie-t-Krievelkuut.png' },
-    { name: 'Chanry', logo: '/hawp_sponsors/logo_chanry.png' },
-    { name: 'Gulden Mortier', logo: '/hawp_sponsors/gulden_mortier_logo-DPdFlTs0.png' },
-  ]
+  // Load sponsor logos dynamically from the hawp_sponsors folder
+  const sponsorModules = import.meta.glob('/public/hawp_sponsors/*', { eager: true, as: 'url' })
+  sponsors.value = Object.keys(sponsorModules).map(path => {
+    const fileName = path.split('/').pop()
+    const name = fileName.replace(/\.(jpg|jpeg|png|gif|webp)$/i, '').replace(/[-_]/g, ' ')
+    return {
+      name: name,
+      logo: `/hawp_sponsors/${fileName}`
+    }
+  })
 
   // Add scroll listener for dynamic navigation
   window.addEventListener('scroll', updateActiveSection)
@@ -291,7 +290,7 @@ onUnmounted(() => {
                 <span class="text-4xl mr-3">📅</span> WANNEER?
               </h3>
               <p class="text-gray-300 text-lg leading-relaxed">
-                <strong class="text-2xl text-amber-400">Donderdag 13 maart 2026</strong><br>
+                <strong class="text-2xl text-amber-400">Vrijdag 13 maart 2026</strong><br>
                 Van <strong>17:00u tot 01:00u</strong>
               </p>
             </div>
@@ -343,7 +342,7 @@ onUnmounted(() => {
               </h3>
               <p class="text-gray-300 text-lg leading-relaxed">
                 Vragen? Neem contact op via:<br>
-                <a href="mailto:info@herkseafterworkparty.be" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">info@herkseafterworkparty.be</a>
+                <a href="mailto:wout.ector@hotmail.com" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">info@herkseafterworkparty.be</a>
               </p>
             </div>
           </div>
