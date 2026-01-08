@@ -383,7 +383,7 @@ onUnmounted(() => {
               </h3>
               <p class="text-gray-300 text-lg leading-relaxed">
                 Vragen? Neem contact op via:<br>
-                <a href="mailto:info@herkseafterworkparty.be" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">info@herkseafterworkparty.be</a>
+                <a href="mailto:wout.ector@hotmail.com" class="text-amber-400 font-semibold hover:text-amber-300 transition-colors">wout.ector@hotmail.com</a>
               </p>
             </div>
           </div>
@@ -510,7 +510,7 @@ onUnmounted(() => {
           <div>
             <h4 class="font-bebas text-2xl mb-4">CONTACT</h4>
             <p class="text-gray-400">
-              Email: info@herkseafterworkparty.be<br>
+              Email: wout.ector@hotmail.com<br>
             </p>
           </div>
           <div>
