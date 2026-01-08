@@ -7,6 +7,7 @@ const sponsors = ref([])
 const currentPhotoIndex = ref(0)
 const mobileMenuOpen = ref(false)
 const showScrollTop = ref(false)
+const showTicketNotification = ref(false)
 
 const scrollToSection = (section) => {
   activeSection.value = section
@@ -19,6 +20,13 @@ const scrollToSection = (section) => {
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const showTicketAlert = () => {
+  showTicketNotification.value = true
+  setTimeout(() => {
+    showTicketNotification.value = false
+  }, 5000)
 }
 
 const updateActiveSection = () => {
@@ -79,6 +87,39 @@ onUnmounted(() => {
 
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <!-- Ticket Notification Toast -->
+    <Transition name="slide-down">
+      <div v-show="showTicketNotification" class="fixed top-24 left-1/2 -translate-x-1/2 z-[60] w-[90%] max-w-2xl">
+        <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 rounded-2xl shadow-2xl border-2 border-amber-300 overflow-hidden">
+          <div class="bg-slate-900/95 backdrop-blur-xl m-1 rounded-xl p-6 md:p-8">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg">
+                  <span class="text-3xl md:text-4xl">🎟️</span>
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                  Ticketverkoop Start Binnenkort!
+                </h3>
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-3">
+                  De verkoop start op <span class="font-bold text-amber-400">25 januari 2026</span>
+                </p>
+                <p class="text-gray-400 text-sm md:text-base">
+                  📱 Houd onze website en social media in de gaten voor de exacte starttijd!
+                </p>
+              </div>
+              <button @click="showTicketNotification = false" class="flex-shrink-0 text-gray-400 hover:text-white transition-colors p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-lg border-b border-amber-500/20">
       <div class="container mx-auto px-4 md:px-6">
@@ -105,10 +146,10 @@ onUnmounted(() => {
                     class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Foto's
             </button>
-            <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-               class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-bold text-sm lg:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <button @click="showTicketAlert"
+               class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-bold text-sm lg:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
               Koop Tickets
-            </a>
+            </button>
           </div>
 
           <!-- Mobile Menu Button -->
@@ -143,10 +184,10 @@ onUnmounted(() => {
             </button>
             
             <!-- Tickets Button -->
-            <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-               class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-xl transition-all duration-200 text-center flex items-center justify-center gap-2">
+            <button @click="showTicketAlert"
+               class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-xl transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer">
               🎟️ Koop Tickets
-            </a>
+            </button>
             
             <!-- Social Media -->
             <div class="pt-2 mt-1 border-t border-slate-700">
@@ -194,10 +235,10 @@ onUnmounted(() => {
                 <div class="text-white text-2xl font-bold">13 Maart 2026</div>
                 <div class="text-gray-300 text-base">17:00 - 01:00</div>
               </div>
-              <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-                 class="block w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+              <button @click="showTicketAlert"
+                 class="block w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
                 🎟️ Koop Tickets Nu
-              </a>
+              </button>
             </div>
             
             <!-- Desktop: Originele layout -->
@@ -211,10 +252,10 @@ onUnmounted(() => {
                   <div class="text-white text-3xl font-bold">13 Maart 2026</div>
                   <div class="text-gray-300 text-base">17:00 - 01:00</div>
                 </div>
-                <a href="https://hawp.eventsquare.store/nl/3cxjdhhzpetb/jw1otf5pbv3v" target="_blank" rel="noopener noreferrer"
-                   class="px-8 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap">
+                <button @click="showTicketAlert"
+                   class="px-8 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer">
                   🎟️ Koop Tickets Nu
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -538,5 +579,24 @@ onUnmounted(() => {
 .scroll-top-leave-to {
   opacity: 0;
   transform: translateY(20px) scale(0.8);
+}
+
+/* Toast notification transitions */
+.slide-down-enter-active {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-100px) scale(0.9);
+}
+
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50px) scale(0.95);
 }
 </style>
