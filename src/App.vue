@@ -152,10 +152,10 @@ onUnmounted(() => {
                     class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Foto's
             </button>
-            <button @click="showTicketAlert"
+            <a href="https://hawp.eventsquare.store/" target="_blank" rel="noopener noreferrer"
                class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-bold text-sm lg:text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
               Koop Tickets
-            </button>
+            </a>
           </div>
 
           <!-- Mobile Menu Button -->
@@ -195,10 +195,10 @@ onUnmounted(() => {
             </button>
             
             <!-- Tickets Button -->
-            <button @click="showTicketAlert"
+            <a href="https://hawp.eventsquare.store/" target="_blank" rel="noopener noreferrer"
                class="px-4 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-xl transition-all duration-200 text-center flex items-center justify-center gap-2 cursor-pointer">
               🎟️ Koop Tickets
-            </button>
+            </a>
             
             <!-- Social Media -->
             <div class="pt-2 mt-1 border-t border-slate-700">
@@ -246,10 +246,10 @@ onUnmounted(() => {
                 <div class="text-white text-2xl font-bold">13 Maart 2026</div>
                 <div class="text-gray-300 text-base">17:00 - 02:00</div>
               </div>
-              <button @click="showTicketAlert"
+              <a href="https://hawp.eventsquare.store/" target="_blank" rel="noopener noreferrer"
                  class="block w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
                 🎟️ Koop Tickets Nu
-              </button>
+              </a>
             </div>
             
             <!-- Desktop: Originele layout -->
@@ -263,10 +263,10 @@ onUnmounted(() => {
                   <div class="text-white text-3xl font-bold">13 Maart 2026</div>
                   <div class="text-gray-300 text-base">17:00 - 02:00</div>
                 </div>
-                <button @click="showTicketAlert"
+                <a href="https://hawp.eventsquare.store/" target="_blank" rel="noopener noreferrer"
                    class="px-8 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer">
                   🎟️ Koop Tickets Nu
-                </button>
+                </a>
               </div>
             </div>
           </div>
