@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import FoodCarousel from './components/FoodCarousel.vue'
 
 const activeSection = ref('home')
 const photos = ref([])
@@ -30,7 +31,7 @@ const showTicketAlert = () => {
 }
 
 const updateActiveSection = () => {
-  const sections = ['home', 'informatie', 'sponsors', 'gallery', 'tickets']
+  const sections = ['home', 'informatie', 'sponsors', 'food', 'gallery', 'tickets']
   const scrollPosition = window.scrollY + 200 // Offset for header
 
   // Show scroll to top button after scrolling down
@@ -141,6 +142,11 @@ onUnmounted(() => {
                     class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
               Sponsors
             </button>
+            <button @click="scrollToSection('food')" 
+                    :class="activeSection === 'food' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
+                    class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
+              Food
+            </button>
             <button @click="scrollToSection('gallery')" 
                     :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'text-white hover:bg-white/10'"
                     class="px-4 lg:px-6 py-2 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300">
@@ -176,6 +182,11 @@ onUnmounted(() => {
                     :class="activeSection === 'sponsors' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
                     class="px-4 py-3 rounded-lg font-bold text-base transition-all duration-200 text-left">
               Sponsors
+            </button>
+            <button @click="scrollToSection('food')" 
+                    :class="activeSection === 'food' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
+                    class="px-4 py-3 rounded-lg font-bold text-base transition-all duration-200 text-left">
+              🍽️ Food
             </button>
             <button @click="scrollToSection('gallery')" 
                     :class="activeSection === 'gallery' ? 'bg-white text-slate-900' : 'bg-slate-800 text-white hover:bg-slate-700'"
@@ -406,6 +417,71 @@ onUnmounted(() => {
           <!-- Sponsor logos -->
           <div v-for="sponsor in sponsors" :key="sponsor.name" class="bg-white/10 backdrop-blur-md rounded-2xl p-6 flex items-center justify-center aspect-square border border-amber-500/20 hover:bg-white/20 hover:border-amber-500/40 hover:scale-105 transition-all duration-300 shadow-xl">
             <img :src="sponsor.logo" :alt="sponsor.name" class="w-full h-full object-contain" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Food Carousel Section -->
+    <section id="food" class="min-h-screen relative py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <!-- Background Decorative Elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="font-bebas text-4xl md:text-6xl text-white mb-6 tracking-wide">
+            New Food Concept
+          </h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 mx-auto mb-8"></div>
+        </div>
+
+        <!-- Premium Food Carousel Component -->
+        <FoodCarousel />
+
+        <!-- Additional Info -->
+        <div class="mt-16 max-w-4xl mx-auto">
+          <div class="bg-slate-900/40 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-amber-500/20 shadow-2xl">
+            <div class="text-center space-y-6">
+              <div class="flex items-center justify-center gap-3 mb-6">
+                <div class="h-px w-16 bg-gradient-to-r from-transparent to-amber-500/50"></div>
+                <span class="text-amber-400 text-sm font-semibold tracking-widest uppercase">Nieuw dit jaar</span>
+                <div class="h-px w-16 bg-gradient-to-l from-transparent to-amber-500/50"></div>
+              </div>
+              
+              <h3 class="text-white text-2xl md:text-3xl font-bold mb-4">
+                All-Around Dinner
+              </h3>
+              
+              <p class="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                Geniet van <span class="text-amber-400 font-semibold">18:00u tot 21:00u</span> van een culinaire ervaring 
+                met verschillende signature gerechten, zorgvuldig geselecteerd om de perfecte start van je avond te creëren.
+              </p>
+
+              <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <div class="flex items-center gap-2 text-gray-400">
+                  <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm md:text-base">Meerdere keuzes</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                  <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="text-sm md:text-base">Overheerlijk</span>
+                </div>
+                <div class="flex items-center gap-2 text-gray-400">
+                  <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span class="text-sm md:text-base">3 uur Service</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
