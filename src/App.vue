@@ -233,7 +233,7 @@ onUnmounted(() => {
               </div>
               <div class="text-center py-2">
                 <div class="text-white text-2xl font-bold">13 Maart 2026</div>
-                <div class="text-gray-300 text-base">17:00 - 01:00</div>
+                <div class="text-gray-300 text-base">17:00 - 02:00</div>
               </div>
               <button @click="showTicketAlert"
                  class="block w-full px-8 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center cursor-pointer">
@@ -250,7 +250,7 @@ onUnmounted(() => {
               <div class="flex flex-col items-end gap-2">
                 <div class="text-right">
                   <div class="text-white text-3xl font-bold">13 Maart 2026</div>
-                  <div class="text-gray-300 text-base">17:00 - 01:00</div>
+                  <div class="text-gray-300 text-base">17:00 - 02:00</div>
                 </div>
                 <button @click="showTicketAlert"
                    class="px-8 py-3 rounded-lg font-bold text-base bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 whitespace-nowrap cursor-pointer">
@@ -332,7 +332,7 @@ onUnmounted(() => {
               </h3>
               <p class="text-gray-300 text-lg leading-relaxed">
                 <strong class="text-2xl text-amber-400">Vrijdag 13 maart 2026</strong><br>
-                Van <strong>17:00u tot 01:00u</strong>
+                Van <strong>17:00u tot 02:00u</strong>
               </p>
             </div>
 
