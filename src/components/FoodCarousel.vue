@@ -14,21 +14,21 @@ const containerRef = ref(null)
 onMounted(async () => {
   try {
     // Dynamically import images from /food folder
-    const imageModules = import.meta.glob('/public/food/*.(jpg|jpeg|png|webp)', { eager: true, as: 'url' })
+    const imageModules = import.meta.glob('/public/food/*.webp', { eager: true, query: '?url', import: 'default' })
     
     let imageList = Object.keys(imageModules).map(path => {
       const fileName = path.split('/').pop()
       return {
         src: `/food/${fileName}`,
         name: fileName,
-        alt: fileName.replace(/\.(jpg|jpeg|png|webp)$/i, '').replace(/[-_]/g, ' ')
+        alt: fileName.replace(/\.webp$/i, '').replace(/[-_]/g, ' ')
       }
     })
 
-    // Sort: jacks.jpeg first, then alphabetically
+    // Sort: jacks.webp first, then alphabetically
     imageList.sort((a, b) => {
-      if (a.name.toLowerCase() === 'jacks.jpeg') return -1
-      if (b.name.toLowerCase() === 'jacks.jpeg') return 1
+      if (a.name.toLowerCase() === 'jacks.webp') return -1
+      if (b.name.toLowerCase() === 'jacks.webp') return 1
       return a.name.localeCompare(b.name)
     })
 

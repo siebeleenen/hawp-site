@@ -62,14 +62,14 @@ const goToPhoto = (index) => {
 }
 
 onMounted(() => {
-  // Generate array of photo paths (1.jpg through 100.jpg)
-  photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.jpg`)
+  // Generate array of photo paths (1.webp through 100.webp)
+  photos.value = Array.from({ length: 100 }, (_, i) => `/hawp_2025_fotos/${i + 1}.webp`)
 
   // Load sponsor logos dynamically from the hawp_sponsors folder
-  const sponsorModules = import.meta.glob('/public/hawp_sponsors/*', { eager: true, as: 'url' })
+  const sponsorModules = import.meta.glob('/public/hawp_sponsors/*.webp', { eager: true, query: '?url', import: 'default' })
   sponsors.value = Object.keys(sponsorModules).map(path => {
     const fileName = path.split('/').pop()
-    const name = fileName.replace(/\.(jpg|jpeg|png|gif|webp)$/i, '').replace(/[-_]/g, ' ')
+    const name = fileName.replace(/\.webp$/i, '').replace(/[-_]/g, ' ')
     return {
       name: name,
       logo: `/hawp_sponsors/${fileName}`
@@ -127,7 +127,7 @@ onUnmounted(() => {
         <div class="flex items-center justify-between h-16 md:h-20">
           <!-- Logo -->
           <a href="#home" @click.prevent="scrollToSection('home')" class="flex items-center hover:scale-105 transition-transform duration-300 z-50">
-            <img src="/afterwork logo.png" alt="HAWP Logo" class="h-10 w-10 md:h-16 md:w-16" />
+            <img src="/afterwork logo.webp" alt="HAWP Logo" class="h-10 w-10 md:h-16 md:w-16" />
           </a>
           
           <!-- Desktop Nav Links -->
@@ -274,7 +274,7 @@ onUnmounted(() => {
 
         <!-- Main Image -->
         <div class="relative w-full max-w-5xl">
-          <img src="/hawpomslag 2026.png" alt="HAWP 2026" class="w-full rounded-2xl md:rounded-3xl shadow-2xl relative z-10" />
+          <img src="/hawpomslag 2026.webp" alt="HAWP 2026" class="w-full rounded-2xl md:rounded-3xl shadow-2xl relative z-10" loading="eager" fetchpriority="high" />
           <!-- Gradient glow behind image -->
           <div class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-orange-400/20 to-amber-600/20 rounded-2xl md:rounded-3xl blur-3xl transform scale-105 -z-10"></div>
         </div>
