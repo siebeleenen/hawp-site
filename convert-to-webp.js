@@ -8,7 +8,6 @@ const __dirname = path.dirname(__filename);
 
 // Directories to process
 const directories = [
-  'public/food',
   'public/hawp_2025_fotos',
   'public/hawp_sponsors'
 ];
