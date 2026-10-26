@@ -2,6 +2,7 @@
 import { computed, nextTick, ref } from 'vue'
 import photos from '../data/photos-2026.json'
 import { links } from '../data/event.js'
+import FacebookIcon from './FacebookIcon.vue'
 
 const selected = ref(0)
 const dialog = ref(null)
@@ -83,7 +84,13 @@ function onTouchEnd(event) {
           <button v-if="visibleCount < photos.length" class="button button-outline" @click="visibleCount += 18">Meer foto’s laden <span aria-hidden="true">+</span></button>
         </div>
       </div>
-      <div class="previous-album"><span>Nog even terugblikken?</span><a class="text-link" :href="links.previousAlbum" target="_blank" rel="noopener noreferrer">Het album van vorig jaar op Facebook <span aria-hidden="true">↗</span></a></div>
+      <div class="previous-album">
+        <span>Nog even terugblikken?</span>
+        <a class="text-link" :href="links.previousAlbum" target="_blank" rel="noopener noreferrer">
+          <FacebookIcon class="album-facebook-icon" width="20" height="20" />
+          Het album van vorig jaar op Facebook
+        </a>
+      </div>
     </div>
 
     <dialog ref="dialog" class="photo-dialog" aria-label="Fotogalerij HAWP 2026" @close="restoreFocus" @click="event => { if (event.target === dialog) closePhoto() }" @keydown.left.prevent="move(-1)" @keydown.right.prevent="move(1)">

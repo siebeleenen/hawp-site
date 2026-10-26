@@ -128,7 +128,8 @@ h2 { font-size: clamp(42px, 4.3vw, 64px); line-height: 1.02; letter-spacing: -.0
 .gallery-actions p > span { font-size: 11px; color: var(--muted); }
 .previous-album { display: flex; align-items: center; gap: 24px; padding-top: 17px; border-top: 1px solid var(--line); }
 .previous-album > span { font-size: 11px; color: var(--muted); }
-.previous-album .text-link { border: 0; font-size: 11px; }
+.previous-album .text-link { border: 0; font-size: 11px; gap: 12px; }
+.album-facebook-icon { flex-shrink: 0; }
 .album-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .album-more { display: flex; align-items: center; justify-content: center; gap: 25px; padding-block: 27px 35px; }
 .album-more p { font-size: 11px; color: var(--muted); }
@@ -308,7 +309,7 @@ details[open] .faq-symbol::after { transform: none; }
   .gallery-actions { flex-direction: column; align-items: flex-start; gap: 21px; padding-block: 22px 25px; }
   .gallery-actions p { font-size: 12px; }
   .previous-album { flex-direction: column; align-items: flex-start; gap: 0; padding-top: 22px; }
-  .previous-album .text-link { padding-block: 10px; font-size: 10px; gap: 18px; }
+  .previous-album .text-link { padding-block: 10px; font-size: 10px; gap: 10px; }
   .gallery-section { padding-bottom: 55px; }
   .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
   .album-more { flex-direction: column; gap: 15px; }
