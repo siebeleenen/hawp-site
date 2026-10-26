@@ -187,9 +187,10 @@ details[open] .faq-symbol::after { transform: none; }
 .contact-copy p { margin-top: 26px; font-size: 13px; line-height: 1.9; color: var(--muted); }
 .contact-email { display: flex; align-items: center; justify-content: space-between; gap: 15px; font-size: clamp(13px, 1.4vw, 20px); padding-block: 21px; border-bottom: 1px solid #b7b2a7; overflow-wrap: anywhere; }
 .contact-email:hover { color: #78602a; }
-.social-links { display: flex; gap: 30px; margin-top: 25px; font-size: 11px; }
-.social-links span { margin-left: 18px; }
-.social-links a:hover { text-decoration: underline; }
+.social-links { display: flex; align-items: center; gap: 12px; margin-top: 25px; }
+.social-links a { display: grid; place-items: center; width: 44px; height: 44px; color: var(--ink); transition: color .18s, background .18s; }
+.social-links a:hover { color: #78602a; background: #e9e4d7; }
+.social-links svg { display: block; flex-shrink: 0; }
 .site-footer { background: #1b1b1e; color: white; }
 .footer-main { display: flex; align-items: center; gap: 45px; padding-block: 37px; }
 .footer-brand img { width: 80px; height: 62px; }
@@ -333,7 +334,6 @@ details[open] .faq-symbol::after { transform: none; }
   .contact-copy h2 { font-size: 56px; }
   .contact-copy p { font-size: 12px; }
   .contact-email { font-size: 17px; gap: 10px; }
-  .social-links { font-size: 11px; }
   .footer-main { gap: 23px; flex-wrap: wrap; padding-block: 30px; }
   .footer-brand img { width: 65px; height: 50px; }
   .footer-main p { font-size: 11px; }
