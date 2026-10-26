@@ -3,7 +3,7 @@ export const edition = {
   year: 2027,
   faq: [
     { question: 'Wanneer en waar is HAWP 2027?', answer: 'Op vrijdag 5 maart 2027, aan Industrieweg 1062 in 3540 Herk-de-Stad.' },
-    { question: 'Waar kan ik tickets kopen?', answer: 'Via onze EventSquare-ticketshop. Daar vind je de prijzen en actuele beschikbaarheid.', link: 'tickets', linkText: 'Naar de ticketshop' },
+    { question: 'Waar kan ik tickets kopen?', answer: 'Via onze ticketshop. Daar vind je de prijzen en actuele beschikbaarheid.', link: 'tickets', linkText: 'Naar de ticketshop' },
     { question: 'Wie staat er achter de draaitafels?', answer: 'De line-up voor 2027 is nog niet bekend. Zodra de namen bevestigd zijn, vind je ze hier.' },
     { question: 'Hoe laat begint de party?', answer: 'De openingsuren voor 2027 worden nog aangekondigd.' },
     { question: 'Hoe neem ik contact op?', answer: 'Je kunt de organisatie bereiken via e-mail.', link: 'email', linkText: 'Mail ons' },

@@ -104,8 +104,8 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeader))
           <div><dt>Deuren</dt><dd>17:00 - 02:00</dd></div>
         </dl>
         <div id="tickets" class="practical-actions">
-          <a class="button button-dark" :href="links.tickets" target="_blank" rel="noopener noreferrer">Naar de ticketshop <span aria-hidden="true">↗</span></a>
-          <a class="text-link" :href="links.maps" target="_blank" rel="noopener noreferrer">Route <span aria-hidden="true">↗</span></a>
+          <a class="button button-dark" :href="links.tickets" target="_blank" rel="noopener noreferrer">Naar de ticketshop</a>
+          <a class="text-link" :href="links.maps" target="_blank" rel="noopener noreferrer">Route <span aria-hidden="true">🗺️</span></a>
         </div>
         <p class="ticket-note">Bekijk de ticketshop voor prijzen en beschikbaarheid.</p>
       </div>
@@ -129,10 +129,10 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeader))
         <span class="eyebrow">WE HOREN GRAAG VAN JE</span>
         <h2>Tot op de<br />dansvloer.</h2>
         <p>Een vraag over de party?<br />Stuur de organisatie een bericht.</p>
-        <a class="contact-email" :href="links.email">{{ links.emailLabel }} <span aria-hidden="true">↗</span></a>
+        <a class="contact-email" :href="links.email">{{ links.emailLabel }} </a>
         <div class="social-links">
-          <a :href="links.facebook" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
-          <a :href="links.instagram" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+          <a :href="links.facebook" target="_blank" rel="noopener noreferrer">Facebook </a>
+          <a :href="links.instagram" target="_blank" rel="noopener noreferrer">Instagram </a>
         </div>
       </div>
     </section>
