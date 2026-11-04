@@ -126,7 +126,6 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeader))
     <section id="contact" class="contact-section">
       <div class="contact-photo"><img :src="atmosphere.contact" alt="Bezoekers van de Herkse Afterwork Party in 2026" width="1200" height="1000" loading="lazy" /></div>
       <div class="contact-copy">
-        <span class="eyebrow">WE HOREN GRAAG VAN JE</span>
         <h2>Tot op de<br />dansvloer.</h2>
         <p>Een vraag over de party?<br />Stuur de organisatie een bericht.</p>
         <a class="contact-email" :href="links.email">{{ links.emailLabel }} </a>
