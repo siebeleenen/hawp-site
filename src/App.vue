@@ -28,7 +28,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeader))
         <img src="/images/logo.webp" alt="Herkse Afterwork Party" width="80" height="62" />
       </a>
       <nav id="main-navigation" aria-label="Hoofdnavigatie" :class="{ 'is-open': menuOpen }">
-        <a href="#over" @click="closeMenu()">De party</a>
+        <a href="#over" @click="closeMenu()">Algemene informatie</a>
         <a href="#gallery" @click="closeMenu()">Foto’s</a>
         <a href="#informatie" @click="closeMenu()">Praktisch</a>
         <a href="#faq" @click="closeMenu()">FAQ</a>
@@ -127,7 +127,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateHeader))
       <div class="contact-photo"><img :src="atmosphere.contact" alt="Bezoekers van de Herkse Afterwork Party in 2026" width="1200" height="1000" loading="lazy" /></div>
       <div class="contact-copy">
         <h2>Tot op de<br />dansvloer.</h2>
-        <p>Een vraag over de party?<br />Stuur de organisatie een bericht.</p>
+        <p>Heb je nog een vraag?<br />Stuur de organisatie een bericht.</p>
         <a class="contact-email" :href="links.email">{{ links.emailLabel }} </a>
         <div class="social-links">
           <a :href="links.facebook" target="_blank" rel="noopener noreferrer" aria-label="Volg Herkse Afterwork Party op Facebook" title="Facebook">
